@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form [formGroup]="signForm" (ngSubmit)="onSubmit()" #form="ngForm">
+        <div formGroupName="userData">
+         <div class="form-group">
+            <label for="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              class="form-control"
+              formControlName="username">
+              <span 
+                class="block-help span-invalid"   
+                *ngIf="!signForm.get('userData.username').valid &&
+                signForm.get('userData.username').touched"
+                >Username not valid</span>
+          </div>
+          <div class="form-group">
+            <label for="email">email</label>
+            <input
+              type="email"
+              id="email"
+              class="form-control"
+              formControlName="email"
+              required>
+              <span 
+              class="block-help span-invalid"   
+              *ngIf="!signForm.get('userData.email').valid &&
+              signForm.get('userData.email').touched"
+              >email not valid</span>
+          </div>
+          <div class="radio" *ngFor="let gender of genders">
+            <label>
+              <input
+                type="radio"
+                [value]="gender"
+                formControlName="gender">{{ gender }}
+                
+            </label>
+          </div>
+          <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+        </div>
+        
+      </form> 
+     
+    </div>
+  </div>
+</div>
